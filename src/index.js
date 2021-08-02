@@ -24,13 +24,14 @@ const onClickAdd = () => {
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {
-    alert("削除");
+    const deleteTarget = deleteButton.parentNode;
+    document.getElementById("incomplete-list").removeChild(deleteTarget);
   });
 
   // li要素のこ要素に各要素を設定
   li.appendChild(div);
-  div.appendChild(completButton);
-  div.appendChild(deleteButton);
+  li.appendChild(completButton);
+  li.appendChild(deleteButton);
 
   // 未完了のリストに追加
   document.getElementById("incomplete-list").appendChild(li);
