@@ -17,15 +17,25 @@ const onClickAdd = () => {
   const completButton = document.createElement("button");
   completButton.innerText = "完了";
   completButton.addEventListener("click", () => {
-    alert("完了");
+    deleteFromIncompleteList(completButton.parentNode);
+    const addTarget = completButton.parentNode;
+    const text = addTarget.firstElementChild.innerText;
+    addTarget.textContent = null;
+    const li = document.createElement("li");
+    li.innerText = text;
+    const backButton = document.createElement("button");
+    backButton.innerText = "戻す";
+    addTarget.appendChild(div);
+    addTarget.appendChild(backButton);
+    // 完了リストに追加
+    document.getElementById("complete-list").appendChild(addTarget);
   });
 
   // button（削除）要素生成
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {
-    const deleteTarget = deleteButton.parentNode;
-    document.getElementById("incomplete-list").removeChild(deleteTarget);
+    deleteFromIncompleteList(deleteButton.parentNode);
   });
 
   // li要素のこ要素に各要素を設定
@@ -35,6 +45,11 @@ const onClickAdd = () => {
 
   // 未完了のリストに追加
   document.getElementById("incomplete-list").appendChild(li);
+};
+
+// 未完了リストから指定の要素を削除
+const deleteFromIncompleteList = (target) => {
+  document.getElementById("incomplete-list").removeChild(target);
 };
 
 document
